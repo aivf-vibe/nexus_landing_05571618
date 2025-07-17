@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StartFlow - Unified API for Open-Source LLMs</title>
+    <meta name="description" content="Access multiple LLM providers through a single API, with transparent pricing, uptime monitoring, and ratings. Pay-per-use in rupees via UPI.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-network-wired"></i>
+                <span>StartFlow</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#models" class="nav-link">Models</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#docs" class="nav-link">Docs</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#login" class="nav-link login-btn">Login</a>
+                <a href="#signup" class="nav-link signup-btn">Sign Up</a>
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Unified API for Open-Source LLMs</h1>
+                <p class="hero-subtitle">Access multiple LLM providers through a single API, with transparent pricing, uptime monitoring, and ratings. Pay-per-use in rupees via UPI with no subscriptions.</p>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-route"></i>
+                        <span>Automatic provider routing for reliability</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Low-latency edge inference</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Data policy controls</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="scrollToSection('signup')">Get Started</button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('models')">Explore Models</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="api-demo">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang">curl</span>
+                            <button class="copy-btn" onclick="copyCode()">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                        <pre><code>curl https://api.startflow.ai/v1/chat/completions \
+  -H "Authorization: Bearer $STARTFLOW_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "llama-3.1-70b",
+    "messages": [
+      {"role": "user", "content": "Hello!"}
+    ]
+  }'</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose StartFlow?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Single API Access</h3>
+                    <p>Access diverse models and providers through one unified API with automatic fallbacks and intelligent load balancing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h3>Pay-per-Use in Rupees</h3>
+                    <p>Simple pricing with UPI payments. No subscriptions, no hidden fees. Pay only for what you use.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Real-time Monitoring</h3>
+                    <p>Live uptime monitoring, user ratings, and model leaderboards to help you choose the best providers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Advanced Features</h3>
+                    <p>Support for structured outputs, images/PDFs processing, and customizable presets for your workflows.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>User & Provider Dashboards</h3>
+                    <p>Comprehensive dashboards for seamless management of your API usage and provider offerings.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Usage Analytics</h3>
+                    <p>Detailed analytics and insights into your token usage, costs, and performance metrics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Search Section -->
+    <section class="model-search" id="models">
+        <div class="container">
+            <h2 class="section-title">Find the Perfect Model</h2>
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search models by name, capability, or provider..." id="modelSearch">
+                    <button class="search-btn">Search</button>
+                </div>
+                <div class="search-filters">
+                    <select class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="programming">Programming</option>
+                        <option value="general">General</option>
+                        <option value="image">Image</option>
+                        <option value="vision">Vision</option>
+                    </select>
+                    <select class="filter-select">
+                        <option value="">Sort by</option>
+                        <option value="popularity">Popularity</option>
+                        <option value="rating">Rating</option>
+                        <option value="price">Price</option>
+                        <option value="usage">Token Usage</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Models Section -->
+    <section class="top-models">
+        <div class="container">
+            <h2 class="section-title">Top Models</h2>
+            <div class="models-grid" id="modelsGrid">
+                <!-- Models will be populated by JavaScript -->
+            </div>
+            <div class="view-all-container">
+                <button class="btn btn-outline" onclick="viewAllModels()">View All Models</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rankings Section -->
+    <section class="rankings" id="rankings">
+        <div class="container">
+            <h2 class="section-title">Model Rankings & Leaderboards</h2>
+            <div class="rankings-tabs">
+                <button class="tab-btn active" onclick="showRanking('usage')">Top by Usage</button>
+                <button class="tab-btn" onclick="showRanking('rating')">Top Rated</button>
+                <button class="tab-btn" onclick="showRanking('labs')">Labs Favorites</button>
+                <button class="tab-btn" onclick="showRanking('apps')">Public Apps</button>
+            </div>
+            <div class="rankings-content" id="rankingsContent">
+                <!-- Rankings will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">2.5B+</div>
+                    <div class="stat-label">Tokens Processed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">LLM Models</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Active Providers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Uptime</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How does StartFlow's unified API work?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>StartFlow provides a single API endpoint that routes your requests to multiple LLM providers. Our intelligent routing system automatically handles fallbacks, load balancing, and provider selection based on uptime, latency, and your preferences.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What payment methods do you support?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We support UPI payments for Indian users, making it easy to add credits to your account. No subscriptions required - you only pay for the tokens you use with transparent pricing in rupees.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>How do you ensure high uptime and reliability?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We continuously monitor all providers with real-time uptime tracking. Our automatic failover system routes requests to healthy providers, and we provide transparent uptime statistics for each provider.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Can I become a provider on StartFlow?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! StartFlow welcomes new providers. You can submit your hosted models through our Provider Dashboard. We test all submissions for 3 hours at random intervals before approval.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What data policies do you follow?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We provide transparent data policy controls. Each provider specifies their logging and training data usage policies, which are clearly displayed. You can choose providers based on your data privacy requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-network-wired"></i>
+                        <span>StartFlow</span>
+                    </div>
+                    <p>Unified API for Open-Source LLMs with transparent pricing and reliable infrastructure.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#models">Models</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#rankings">Rankings</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="#compliance">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StartFlow. All rights reserved. Designed by VibeStud.io</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "startflow-landing",
+  "version": "1.0.0",
+  "description": "StartFlow - Unified API for Open-Source LLMs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx http-server . -p 51417 -c-1 --cors -o",
+    "start": "npx http-server . -p 51417 -c-1 --cors"
+  },
+  "keywords": ["llm", "api", "startflow", "ai"],
+  "author": "VibeStud.io",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
